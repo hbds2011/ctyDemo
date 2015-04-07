@@ -851,11 +851,11 @@
       <!-- Sidebar Wrapper -->
       <div class="sidebar-wrapper">
       <!-- Side Panel -->
-      <div class="side-panel">
+      <!-- <div class="side-panel"> -->
       <!-- Sidebar Buttons: The classes button-1, button-2, button-3 and button-4 corresspond to the position of the button in each row. A row contains a maximum of 4 buttons -->
-      <ul class="nav-buttons">
-      </ul> 
-      </div>
+      <!-- <ul class="nav-buttons"> -->
+      <!-- </ul>  -->
+      <!-- </div> -->
       <!-- End Side Panel -->
 
       <!-- Sidebar Navigation Wrapper -->
@@ -1515,6 +1515,8 @@
       $(document).ready(function() {
         //画面全般の設定
         initAll();
+        //画面初期化とresize時のレイアウト
+        initLayout();
         //画面Navi設定
         initNavMenu();
         //グローブノードモニター-グローブノードテーブル
@@ -1558,6 +1560,30 @@
             //詳細情報Panel画面の「閉じる」動作
             } else if ($target.hasClass('fa-times')) {
               hideDetail();
+            }
+        });
+      }
+
+      function initLayout() {
+        //メニューなどのスクロールバー調整
+
+        //画面が狭い時左側のメニューを隠す
+        if ($(window).width() < 991) {
+          $('.sidebarLeft').addClass('collapse').addClass('in');
+        }
+        //画面のサイズを調整する時、ヘッダーの高度に応じて、右側のメニューと主な内容を下へ移す
+        $(window).resize(function() {
+            //Start: Sidebar Left
+            if ($('.header-fixed').length) {
+                navHeight = $('.sidebar-left').height();
+            }
+            //End: Sidebar Left
+
+            //Start: Sidebar Right
+            if ($('.header-fixed').length) {
+                $('.sidebar-right .chat-list-wrapper').slimScroll({
+                    height: $('.sidebar-right').height() - 80
+                });
             }
         });
       }
@@ -2314,19 +2340,43 @@
       }
 
       function showJobCalendar() {
+        var startDate = moment().day(-7).calendar();
+        //今日の日付を取得
         $('#jobCalendar').fullCalendar({
           header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            right: ''
           },
-          aspectRatio: 3.5,
-          defaultDate: '2015-04-05',
+          aspectRatio: 6,
+          defaultDate: startDate,
+          defaultView: 'custView',
+          views: {
+            custView: {
+              type: 'basic',
+              duration: { days: 22 }
+            }
+          },
           lang: 'ja',
           buttonIcons: false, // show the prev/next text
           weekNumbers: false,
           editable: true,
           eventLimit: false, // allow "more" link when too many events
+          eventClick: function(calEvent, jsEvent, view) {
+            // alert('Event: ' + calEvent.title);
+            // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+            // alert('View: ' + view.name);
+            // change the border color just for fun
+            $(this).css('border-color', 'red');
+          },
+          eventMouseover: function(calEvent, jsEvent, view) {
+            // change the border color just for fun
+            $(this).css('background-color', 'orange');
+          },
+          eventMouseout: function(calEvent, jsEvent, view) {
+            // change the border color just for fun
+            $(this).css('background-color', '#3a87ad');
+          },
           events: [
             {
               title: 'SYS001',
@@ -2377,7 +2427,6 @@
             },
             {
               title: 'SYS012',
-              url: 'http://google.com/',
               start: '2015-04-12'
             }
           ]
