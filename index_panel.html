@@ -20,8 +20,9 @@
     <link href="assets/css/ionicons/ionicons-css/ionicons.css" rel="stylesheet">
     <link href="assets/css/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="assets/css/select2/select2.css" rel="stylesheet">
-    <link href="assets/css/customize/style.css" rel="stylesheet">
     <link href="assets/css/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="assets/css/customize/style.css" rel="stylesheet">
+    <link href="assets/css/customize/ctyDemo.css" rel="stylesheet">
 
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -120,7 +121,7 @@
       .icon-number {
         position: absolute;
         top: 0px;
-        right: 0px;
+        left: 0px;
         display: inline-block;
         min-width: 10px;
         padding: 3px 7px;
@@ -131,7 +132,7 @@
         vertical-align: baseline;
         white-space: nowrap;
         text-align: center;
-        background-color: #777;
+        background-color: transparent;
         border-radius: 10px;
       }
 
@@ -297,6 +298,13 @@
         width: 7%;
       }
       /*End グローブノードモニター画面-グローブノードテーブルデータ表示設定*/
+
+      #globeNodeList .dataTables_paginate > span > span {
+        cursor: pointer;
+      }
+      #globeNodeList .dataTables_paginate > span > span:hover {
+        color: red;
+      }
     </style>
   </head>
 
@@ -504,77 +512,178 @@
           <!-- End Product Logo -->
           <!-- Left Button Container -->
           <ul id="firstNavUl" class="fist-nav button-container clearfix">
-            <div class="bg-logo"></div>
-            <li class="item">
-                <!-- Left Sidebar Toggle Button -->
+            <div class="bg-logo">
+              <a href="javascript:void(0);" class="logo hidden-xs">
+                <span class="icon">
+                  <i class="fa fa-cube">&nbsp;Senju</i>
+                </span>
+              </a>
+            </div>
+            <li class="item toggle">
                 <a id="sidebarLeftToggle" class="nav-button" data-toggle="collapse" data-target=".sidebarLeft">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="fa fa-bars"></span> 
                 </a> 
             </li>
-            <!-- Nav Button 2 -->
-            <li class="item">
-                <!-- Dropdown Button -->
+<!--             <li class="item">
                 <a href="javascript:void(0);" id="#globeSecondNav" class="nav-active firstNav">
                     <span>ノードグループ</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#monSecondNav" class="firstNav">
                     <span>モニタリング</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#evtSecondNav" class="firstNav">
                     <span>イベント</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#jobSecondNav" class="firstNav">
                     <span>ジョブスケジュール</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#statSecondNav" class="firstNav">
                     <span>稼働統計</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#historySecondNav" class="firstNav">
                     <span>履歴検索</span>
                 </a>
-                <!-- End Dropdown Button -->
             </li>
-            <!-- End Nav Button 2 -->
-            <!-- Nav Button 2 -->
             <li class="item">
-                <!-- Dropdown Button -->
                 <a href="javascript:void(0);" id="#sysSettingSecondNav" class="firstNav">
                     <span>システム設定</span>
                 </a>
-                <!-- End Dropdown Button -->
+            </li> -->
+            <li class="item icon">
+              <a href="javascript:void(0);" data-toggle="dropdown">
+                <span>bianchi</span>
+              </a>
+              <ul class="dropdown-menu nav-dropdown-list animated fadeInDown">
+                <div class="bottom arrow"></div>
+                <li class="header">
+                    <h4 class="title">ドメイン</h4>
+                </li>
+                <li class="item-list-container">
+                  <ul class="item-list"> 
+                    <li>
+                      <a href="message-item.html"> 
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>ドメイン名:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>マネージャID:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>マネージャ名:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>IPアドレス:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">10.10.1.186</h6> 
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </li>
-            <!-- End Nav Button 2 -->
+            <li class="item icon tips">
+              <a href="javascript:void(0);" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="icon-number">99+</span>
+                <div>新メッセージ</div>
+              </a>
+              <ul class="dropdown-menu nav-dropdown-list animated fadeInDown">
+                <div class="bottom arrow"></div>
+                <li class="header">
+                    <h4 class="title">メッセージ</h4>
+                </li>
+                <li class="item-list-container">
+                  <ul class="item-list">
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="footer">
+                    <a href="#" class="btn btn-default" style="border:0px;">全てメッセージ表示</a>
+                </li>
+              </ul>
+            </li>
+            <li class="item user">
+              <a href="javascript:void(0);">
+                <i class="fa fa-sign-out icon">&nbsp;ログアウト</i>
+              </a>
+            </li>
+            <li class="item user">
+              <a href="javascript:void(0);">
+                <i class="fa fa-user icon">&nbsp;senju</i><span>&nbsp;(Operator)</span>
+              </a>
+            </li>
           </ul>
           <!-- End Left Button Container -->
           <!-- Right Button Container2 -->
@@ -716,9 +825,8 @@
         <!-- End Right Button Container1 -->
 
         <!-- Navbar Content Center -->
-        <!-- <div class="second-nav clearfix"> -->
           <!-- ノードグループ Menu -->
-          <ul id="globeSecondNav" class="second-nav button-container nav-active clearfix">
+<!--           <ul id="globeSecondNav" class="second-nav button-container nav-active clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>全てのノード</span>
@@ -729,10 +837,10 @@
                     <span>ノードグループ別</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End ノードグループ Menu -->
           <!-- モニタリング Menu -->
-          <ul id="monSecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="monSecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>ノードステータス</span>
@@ -743,10 +851,10 @@
                     <span>監視タスク一覧</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End モニタリング Menu -->
           <!-- イベント Menu -->
-          <ul id="evtSecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="evtSecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>メッセージ</span>
@@ -757,10 +865,10 @@
                     <span>ランブック</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End イベント Menu -->
           <!-- ジョブスケジュール Menu -->
-          <ul id="jobSecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="jobSecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>ジョブ運用</span>
@@ -771,10 +879,10 @@
                     <span>ジョブレポート</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End ジョブスケジュール Menu -->
           <!-- 稼働統計 Menu -->
-          <ul id="statSecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="statSecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>ダッシュボード</span>
@@ -785,10 +893,10 @@
                     <span>統計情報</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End 稼働統計 Menu -->
           <!-- 履歴検索 Menu -->
-          <ul id="historySecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="historySecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>モニタリング履歴</span>
@@ -819,10 +927,10 @@
                     <span>オペレーション履歴</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End 履歴検索 Menu -->
           <!-- システム設定 Menu -->
-          <ul id="sysSettingSecondNav" class="second-nav button-container clearfix">
+<!--           <ul id="sysSettingSecondNav" class="second-nav button-container clearfix">
             <li class="item">
                 <a href="javascript:void(0);">
                     <span>ユーザ管理</span>
@@ -838,9 +946,8 @@
                     <span>週間スケジュール</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
           <!-- End システム設定 Menu -->
-        <!-- </div> -->
         <!-- End Navbar Content Center -->
       </nav>
     <!-- End Header Navigation -->
@@ -861,7 +968,7 @@
       <!-- Sidebar Navigation Wrapper -->
       <div class="sidebar-nav-wrapper">
         <!-- User Conatiner -->
-        <div class="user-container dropdown">
+<!--         <div class="user-container dropdown">
           <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
             <div class="pull-left image">
               <img src="assets/img/people/1.jpg" class="img-thumbnail avatar bg-light-green" alt="user profile image">
@@ -879,14 +986,14 @@
             <li><a href="lock-screen.html"><i class="fa fa-lock fa-fw icon"></i>Lock Account</a></li>
             <li><a href="login.html"><i class="fa fa-sign-out fa-fw icon"></i>Sign Out</a></li>
           </ul>
-        </div>
+        </div> -->
         <!-- End User Conatiner -->
 
         <!-- Sidebar Navigation -->
         <ul class="sidebar-nav">
 
           <!-- Menu Item -->
-          <li class="border-left-red"> 
+          <li> 
             <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui-elements-submenu" title="UI Elements">
                 <i class="menu-icon fa fa-lg fa-fw fa-sitemap"></i> <span>ノードグループ</span>
@@ -934,7 +1041,14 @@
           <!-- End Menu Item -->
 
           <!-- Menu Item -->
-          <li class="border-left-orange">
+          <li>
+              <a href="javascript:void(0);" title="Charts">
+                  <i class="menu-icon fa fa-lg fa-fw fa-eye"></i> <span class="parent-item">モニタリング</span>
+              </a>
+          </li> 
+
+          <!-- Menu Item -->
+          <li>
               <a href="javascript:void(0);" title="Charts">
                   <i class="menu-icon fa fa-lg fa-fw fa-bolt"></i> <span class="parent-item">イベント</span>
               </a>
@@ -942,23 +1056,36 @@
           <!-- End Menu Item -->
 
           <!-- Menu Item -->
-          <li class="border-left-light-blue">
-              <a href="javascript:void(0);" title="Mail">
+          <li class="border-left-blue">
+              <a href="javascript:void(0);" data-toggle="collapse" data-target="#jobSecNav">
                   <i class="menu-icon fa fa-lg fa-fw fa-inbox"></i> <span class="parent-item">ジョブスケジュール</span>
-              </a> 
+                  <i class="fa fa-caret-right submenu-indicator"></i>
+              </a>
+              <ul id="jobSecNav" class="collapse">  
+                  <!-- Menu Item -->
+                  <li>
+                      <a href="font-awesome.html">ジョブ運用</a>
+                  </li> 
+                  <!-- End Menu Item -->
+                  <!-- Menu Item -->
+                  <li>
+                      <a href="ionicons.html">ジョブサービス</a>
+                  </li> 
+                  <!-- End Menu Item -->
+              </ul>
           </li> 
           <!-- End Menu Item -->
 
           <!-- Menu Item -->
-          <li class="border-left-light-green">
+          <li>
               <a href="javascript:void(0);" title="Calendar">
-                  <i class="menu-icon fa fa-lg fa-fw fa-calendar"></i> <span class="parent-item">稼働履歴</span> 
+                  <i class="menu-icon fa fa-lg fa-fw fa-calendar"></i> <span class="parent-item">稼働統計</span> 
               </a> 
           </li>  
           <!-- End Menu Item -->
 
           <!-- Menu Item -->
-          <li class="border-left-light-green">
+          <li>
               <a href="javascript:void(0);" title="Calendar">
                   <i class="menu-icon fa fa-lg fa-fw fa-filter"></i> <span class="parent-item">履歴検索</span> 
               </a> 
@@ -966,7 +1093,7 @@
           <!-- End Menu Item -->
 
           <!-- Menu Item -->
-          <li class="border-left-light-green">
+          <li>
               <a href="javascript:void(0);" title="Calendar">
                   <i class="menu-icon fa fa-lg fa-fw fa-cogs"></i> <span class="parent-item">システム設定</span> 
               </a> 
@@ -987,17 +1114,16 @@
     </aside> -->
 
     <!-- Page Content Wrapper -->
-    <aside class="content-wrapper sidebar-left sidebarLeft">
+    <aside id="middleContent" class="content-wrapper sidebar-left sidebarLeft">
       <!-- Page Content -->
-      <div class="content container-fluid sidebarRight animated fadeInUp">
-          <div class="row">
+      <div class="content sidebarRight animated fadeInUp">
+          <!-- <div class="row" style="margin:0px;"> -->
             <!-- Content Body -->
-            <div class="col-sm-12">
-                <div class="panel panel-white">
+            <!-- <div class="col-sm-12" style="padding:0px;"> -->
                   <!-- Tabs -->
-                  <div class="tab-wrapper tab-primary">
+                  <div class="tab-wrapper clearfix">
                     <!-- Tab Header -->
-                    <ul class="nav nav-tabs">
+                    <ul class="nav nav-pills">
                         <li class="active"><a id="globeNodesTab" href="#globeNodes" data-toggle="tab">グローバルノードモニタ</a>
                         </li>
                         <li><a id="nodeMonitorTab" href="#nodeDetail" data-toggle="tab">ノードモニタ</a>
@@ -1011,10 +1137,10 @@
                     <!-- Bootstrap Tabs -->
                     <div class="tab-content" style="border:0px;">
                       <!-- グローバルノードモニタ Tab -->
-                      <div class="tab-pane active" id="globeNodes">
-                        <div class="row">
+                      <div class="tab-pane active clearfix" id="globeNodes">
+                        <!-- <div class="row"> -->
                           <!-- 稼働中ノード一覧 Panel -->
-                          <div class="col-md-12">
+                          <div class="col-md-12" style="padding:0px;">
                             <div class="panel panel-light-blue">
                               <div class="panel-heading">
                                 <h3 class="panel-title">グローブノード</h3>
@@ -1026,7 +1152,8 @@
                                 </div>
                               </div>
                               <div id="globeNodeList" class="panel-body">
-                                <table class="table table-striped table-hover" style="width:100%;">
+                                <!-- <div style="background-color: white;"> -->
+                                <table class="table table-striped table-hover" style="width:100%;height:100%;">
                                   <!-- <thead>
                                     <tr>
                                         <th rowspan="2">ノードID</th>
@@ -1137,16 +1264,17 @@
                                         </tr>
                                     </tbody> -->
                                 </table>
+                                <!-- </div> -->
                               </div>
                             </div>
                           </div>
-                        </div>
+                        <!-- </div> -->
                       </div>
                       <!-- End グローバルノードモニタ Tab -->
                       <!-- ノードモニタ Tab -->
-                      <div class="tab-pane" id="nodeDetail">
+                      <div class="tab-pane clearfix" id="nodeDetail">
                           <!-- Tabs -->
-                          <div class="tab-wrapper tab-primary">
+                          <div class="tab-wrapper">
                             <!-- Tab Header -->
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#baseInfo" data-toggle="tab">基本情報</a>
@@ -1261,7 +1389,7 @@
                       </div>
                       <!-- End ノードモニタ Tab -->
                       <!-- ジョブエディタ Tab -->
-                      <div class="tab-pane" id="jobEditor">
+                      <div class="tab-pane clearfix" id="jobEditor">
                         <!-- Navi Header -->
                         <div id="naviBar">
                             <ol class="breadcrumb breadcrumb-customize">
@@ -1271,7 +1399,7 @@
                         </div>
                         <!-- End Navi Header -->
                         <!-- Tabs -->
-                        <div class="tab-wrapper tab-primary tab-left clearfix">
+                        <div class="tab-wrapper tab-left clearfix">
                           <!-- Tab Header -->
                           <ul class="nav nav-tabs">
                               <li class="active"><a id="jobInfoTab" href="#job" data-toggle="tab">ジョブ</a>
@@ -1361,7 +1489,7 @@
                       <!-- ノードモニタ Tab -->
                       <div class="tab-pane" id="jobSchedule">
                           <!-- Tabs -->
-                          <div class="tab-wrapper tab-primary">
+                          <div class="tab-wrapper">
                             <!-- Tab Header -->
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#jobRunInfo" data-toggle="tab">ジョブ運用状況</a>
@@ -1473,10 +1601,9 @@
                     </div>
                     <!-- End Bootstrap Tabs -->
                   </div>
-                </div>
-            </div>
+            <!-- </div> -->
             <!-- End Content Body -->
-          </div>
+          <!-- </div> -->
           <!-- End Bootstrap -->
       </div>
     </aside>
@@ -1508,7 +1635,6 @@
     <script src="assets/js/fullcalendar/fullcalendar.js"></script>
     <script src="assets/js/fullcalendar/locale/ja.js"></script>
     <!-- ユーザー作ったjsファイルを最後にロードする -->
-    <script src="assets/js/customize/nav.js"></script>
     <!-- Page Script -->
     <script>
       //画面onload時の初期化
@@ -1517,7 +1643,7 @@
         initAll();
         //画面初期化とresize時のレイアウト
         initLayout();
-        //画面Navi設定
+        //画面ヘッダーのメニュー設定
         initNavMenu();
         //グローブノードモニター-グローブノードテーブル
         initGlobeNodesTable();
@@ -1564,40 +1690,58 @@
         });
       }
 
+      //画面のレイアウトの調整
       function initLayout() {
         //メニューなどのスクロールバー調整
-
         //画面が狭い時左側のメニューを隠す
-        if ($(window).width() < 991) {
-          $('.sidebarLeft').addClass('collapse').addClass('in');
+        if ($(window).width() < 991 && !$('.sidebarLeft').hasClass('in')) {
+          $('#sidebarLeftToggle').trigger('click');
         }
-        //画面のサイズを調整する時、ヘッダーの高度に応じて、右側のメニューと主な内容を下へ移す
+        //ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
+        adjustMenuContentTop();
+        //画面のサイズを調整する時、ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
         $(window).resize(function() {
-            //Start: Sidebar Left
-            if ($('.header-fixed').length) {
-                navHeight = $('.sidebar-left').height();
-            }
-            //End: Sidebar Left
-
-            //Start: Sidebar Right
-            if ($('.header-fixed').length) {
-                $('.sidebar-right .chat-list-wrapper').slimScroll({
-                    height: $('.sidebar-right').height() - 80
-                });
-            }
+          adjustMenuContentTop();
         });
       }
 
-      //画面全般の設定
+      //ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
+      function adjustMenuContentTop() {
+          //ヘッダーの高度を取得
+          var headerHeight = 0;
+          if ($('header').length) {
+            headerHeight = $('header')[0].offsetHeight;
+          }
+          //右側メニュー、中間内容のtop、margin-top調整
+          if (headerHeight) {
+            $('#leftSideBar').css('top', headerHeight);
+            $('#middleContent').css('margin-top', headerHeight);
+          }
+      }
+
+      //画面ヘッダーのメニュー設定
       function initNavMenu() {
-        $("#firstNavUl li > a.firstNav").each(function() {
-          var $alink = $(this);
-          $alink.mouseover(function() {
-            firstNavClick($alink);
-          })
+        // $("#firstNavUl li > a.firstNav").each(function() {
+        //   var $alink = $(this);
+        //   $alink.mouseover(function() {
+        //     firstNavClick($alink);
+        //   })
+        // });
+        var leftVal;
+        var $aObj;
+        var $divObj;
+        $("#firstNavUl li.item.tips >a").each(function() {
+          $aObj = $(this);
+          $divObj = $aObj.children('div');
+          leftVal = $divObj.css('left');
+          leftVal = leftVal.replace("px","");
+          leftVal = leftVal - ($divObj[0].offsetWidth - this.offsetWidth)/2;
+          leftVal = leftVal + "px";
+          $divObj.css('left', leftVal);
         });
       }
 
+      //画面ヘッダーメニューの選択時のスタイル
       function firstNavClick(alink) {
         alink.toggleClass('nav-active', true);
         alink.closest('li').siblings().each(function() {
@@ -1641,10 +1785,11 @@
             {"catlog1": "カスタム"}
           ]
         };
-        var $dataTables = $('#globeNodeList table');
-        //ヘッダー作成 Start
+        var $dataTables = $('#globeNodeList > table');
+
+        //ヘッダー作成
         $dataTables.append("<thead><tr></tr></thead>");
-        var $tblHeader = $('#globeNodeList table>thead');
+        var $tblHeader = $('#globeNodeList > table > thead');
         //第一層ヘッダー（catlog1）
         var $headerTr1 = $($tblHeader.children('tr')[0]);
         //ヘッダーデータ
@@ -1653,16 +1798,22 @@
         for(var i=0; i<headerArr.length; i++) {
           $headerTr1.append('<th>' + headerArr[i].catlog1 +'</th>');
         }
-        //ヘッダー作成 End
 
-        //テーブルのデータの作成 Start
+        //テーブルのデータの作成
         $dataTables.append("<tbody class='globeNodesTable'></tbody>");
-        var $tblBody = $('#globeNodeList table>tbody');
+        var $tblBody = $('#globeNodeList > table > tbody');
         //グローブノードモニター-グローブノードテーブル-テーブルの行の作成
         createGlobeNodeTableTr($tblBody);
-        //テーブルのデータの作成 End
 
-        var globeNodesTable = $('#globeNodeList table').DataTable(
+        //テーブルボディの高さを計算する
+        var tblHeight = calculateTableBodyHeight();
+        tblHeight += "px";
+
+        //ページ表示の個数設定(頁数/...を含む)
+        var pageNumberLength = 9;
+        $.fn.DataTable.ext.pager.numbers_length = pageNumberLength;
+
+        var globeNodesTable = $('#globeNodeList > table').DataTable(
         {
             //日本語対応
             "language": {
@@ -1688,8 +1839,12 @@
                   "sortDescending":": desc"
               }
             },
+            "pagingType": "full_numbers",
+            "scrollCollapse": true,
+            "pageLength": 10,
+            "scrollY": tblHeight,
             //画面各モジュール位置設定　l:件数/頁　p：頁数表示　i：件数範囲表示　r：状態　t：データテーブル
-            "dom": "lpirt",
+            "dom": "tpi",
             //初期化時の各列の順番表示設定
             "order": [],
             //初期化時の各列の順番表示設定
@@ -1718,26 +1873,32 @@
             }
           }
         );
-        //件数/頁をチェンジするイベント
-        $('#globeNodeList table').on('length.dt', function ( e, settings, len ) {
-          alert("length change");
+        //初期化したデータテーブルの対象を保存する
+        $('#globeNodeList').data('globeNodesTbl',globeNodesTable);
+        PageJumpInit(pageNumberLength);
+
+        //データテーブル初期化成功イベント
+        $('#globeNodeList > table').on('init.dt', function () {
+          alert("init complete");
         });
+
         //画面を描く完了イベント
-        $('#globeNodeList table').on('draw.dt', function (e, settings) {
-          alert("draw complate");
+        $('#globeNodeList > table').on('draw.dt', function (e, settings) {
+          // alert("draw complete");
           $('#globeNodeList .globeNodesTable>tr').each(function(){
             var checkBox = $($(this).children('td')[0]).children('input')[0];
             selectedOrNot(false, checkBox);
           });
+          //ページジャンプ
+          PageJumpInit(pageNumberLength);
         });
+        
         //ページングチェンジイベント
-        $('#globeNodeList table').on('page.dt', function (e, settings) {
-          alert("page changed");
-          globeNodesTblSetPageTo();
+        $('#globeNodeList > table').on('page.dt', function (e, settings) {
+          //alert("page changed");
+          // globeNodesTblSetPageTo();
         });
 
-        //初期化したグローブノードのデータテーブルの対象を保存する
-        $('#globeNodeList').data('globeNodesTbl',globeNodesTable);
 
         //グローバルノードモニター-右側ツール-テーブルレビュー
         $('#globeRightToolsTblSetting').on('click', function (e) {
@@ -1746,14 +1907,70 @@
         } );
       }
 
-      function globeNodesTblSetPageTo() {
-        var pageObj = $('#globeNodeList').data('globeNodesTbl').page.info();
-        var totalPage = pageObj.pages;
-        var currentPage = pageObj.page + 1;
-        currentPage += "";
-        $("#globeNodeList .dataTables_page_jump > span > input[type='text']").val(currentPage);
+      //データテーブル
+      function calculateTableBodyHeight() {
+        //ウインドウの高さ-(ヘッダの高さ + メニューの高さ + パネルの高さ + テーブルヘッダの高さ + 頁の長さ
+        var height = $('html').outerHeight(true);
+        height -= $('header').outerHeight(true) + $('#middleContent>div>div>ul').outerHeight(true) + $('#globeNodeList').prev().outerHeight(true) + $('#globeNodeList > table > thead').outerHeight(true) + 40;
+        return height;
       }
 
+      //頁数は5以上の場合、5頁ごとにジャンプする機能
+      function PageJumpInit(pageNumberLength) {
+        //頁のinfo
+        var pageInfo = $('#globeNodeList').data('globeNodesTbl').page.info();
+        //表示した頁のstart
+        // alert("start: " + pageInfo.start + " end: " + pageInfo.end + " currnetPage: " + pageInfo.page + " totalPage: " + pageInfo.pages);
+        //表示した頁のEnd
+        var totalPage = pageInfo.pages;
+        var currentPage = pageInfo.page;
+        //pageNumberLength 画面最大表示できるページ数の個数（'...'含む）9
+        if (totalPage > pageNumberLength) {
+          var half = pageNumberLength/2;
+          var spans = $('#globeNodeList .dataTables_paginate > span > span');
+          if (currentPage > half) {
+            $(spans[0]).on('click', function(event){
+              // alert("pre page jump");
+              PageJump("pre");
+            });
+          }
+          if (currentPage < totalPage-half-1) {
+            $(spans[spans.length - 1]).on('click', function(event){
+              // alert("after page jump");
+              PageJump("after");
+            });
+          }
+        }
+      }
+
+      function PageJump(flag) {
+        var pageInfo = $('#globeNodeList').data('globeNodesTbl').page.info();
+        var currentPage = pageInfo.page;
+        var totalPage = pageInfo.pages;
+        var toPage;
+        if (flag == "pre") {
+          toPage = currentPage - 5;
+        } else if (flag == "after") {
+          toPage = currentPage + 5;
+        }
+        if (toPage < 0) {
+          toPage = 0;
+        } else if (toPage > totalPage-1) {
+          toPage = totalPage-1;
+        }
+        $('#globeNodeList').data('globeNodesTbl').page(toPage).draw(false);
+      }
+
+      //選択した頁数をジャンプ入力に設定
+      // function globeNodesTblSetPageTo() {
+      //   var pageObj = $('#globeNodeList').data('globeNodesTbl').page.info();
+      //   var totalPage = pageObj.pages;
+      //   var currentPage = pageObj.page + 1;
+      //   currentPage += "";
+      //   $("#globeNodeList .dataTables_page_jump > span > input[type='text']").val(currentPage);
+      // }
+
+      //頁ジャンプの画面表示を追加
       function globeNodesTblAddPageTo() {
         var pageToDivHtml;
         pageToDivHtml = "";
@@ -1762,6 +1979,7 @@
         $('#globeNodeList .dataTables_paginate').before(pageToDivHtml);
       }
 
+      //頁ジャンプ
       function jumpToPage(e) {
         var $target = $(e.target);
         var toPage = $target.prev().val()-1 ;
@@ -1809,7 +2027,7 @@
       function createGlobeNodeTableTr(tblBody) {
         var nodeObj;
         var dataListTrHtml;
-        for (var i=1; i<=100; i++) {
+        for (var i=1; i<=122; i++) {
           //36コラム
           dataListTrHtml = "";
           dataListTrHtml += "<tr onclick='javascript:onItemTrClick(event, this);'>"
@@ -2151,13 +2369,13 @@
 
       //設定情報-表示部分の高度自動調整
       function autoHeightSetting() {
-        var $ul = $('.tab-primary.tab-wrapper.tab-left>ul');
-        var $div = $('.tab-primary.tab-wrapper.tab-left>div');
+        var $ul = $('.tab-wrapper.tab-left>ul');
+        var $div = $('.tab-wrapper.tab-left>div');
 
         var divPadHeight = $div.innerHeight() - $div.height();
         var divHeight = $ul.innerHeight()-divPadHeight-1;
 
-        $('.tab-primary.tab-wrapper.tab-left>div').height(divHeight);
+        $('.tab-wrapper.tab-left>div').height(divHeight);
         $('#job>div>div').slimScroll({
             height: divHeight
         });

@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/customize/switcher.css" rel="stylesheet">
+    <link href="assets/css/font-awsome/font-css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/animate/animate.css" rel="stylesheet">
+    <link href="assets/css/pace/pace.css" rel="stylesheet">
+    <link href="assets/css/ionicons/ionicons-css/ionicons.css" rel="stylesheet">
+    <link href="assets/css/datatables/jquery.dataTables.css" rel="stylesheet">
+    <link href="assets/css/select2/select2.css" rel="stylesheet">
+    <link href="assets/css/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="assets/css/customize/style.css" rel="stylesheet">
+    <link href="assets/css/customize/ctyDemo.css" rel="stylesheet">
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+
+    <style type="text/css">
+      body.fullscreen-widget-active .animated {
+        -webkit-animation-fill-mode: none;
+        animation-fill-mode: none;
+        -webkit-animation-name: none;
+        animation-name: none;
+      }
+
+      /*画面progress barの背景設定*/
+      .div-shadow-ajax{
+        display: block;
+        z-index: 9999;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        opacity:0.3;
+        filter:alpha(opacity=30);
+        background-color:#000;
+      }
+
+      .form-label-text {
+        display: block;
+        width: 100%;
+        padding: 6px 0px;
+        border-style: none;
+      }
+
+      /*全般画面-Navi バーの提示数字*/
+      .icon-number {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 7px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1;
+        vertical-align: baseline;
+        white-space: nowrap;
+        text-align: center;
+        background-color: transparent;
+        border-radius: 10px;
+      }
+
+      /*グローブノードモニター画面-各panelの検索区域設定*/
+      .form-horizontal.panel-search-input > div{
+        border-bottom:1px solid #dddddd;
+      }
+
+      .form-horizontal.panel-search-input input[type="text"]{
+        margin: 0 0 15px;
+      }
+      /*End グローブノードモニター画面-各panelの検索設定*/
+
+      /*グローブノードモニター画面-右側のツールバー設定*/
+      .globeTableRightTools {
+        position: fixed;
+        right: 0px;
+        z-index: 1000;
+      }
+
+      .globeTableRightTools > i {
+        float: right; 
+        background: white;
+        border: 1px solid black;
+        border-right-width: 0;
+        color: black;
+        padding: 8px;
+        cursor: pointer;
+        width: 40px;
+      }
+
+      .globeTableRightTools i:hover {
+        background: #f2f2f2;
+      }
+
+      .globeTableRightTools > div {
+        display: none;
+      }
+      .globeTableRightTools .open {
+        float: left;
+        display: block;
+        background: white;
+        color: black;
+        border: #444;
+        width: 280px;
+        border: 1px solid black;
+        padding: 0px 15px;
+      }
+      #globeTableFilterDiv {
+        top: 120px;
+      }
+
+      #globeTableSettingDiv {
+        top: 160px;
+      }
+
+      #globeTableActionToolsDiv {
+        top: 200px;
+      }
+
+      #globeTableActionToolsDiv .rightMenu {
+        padding: 0px;
+      }
+
+      #globeTableActionToolsDiv .rightMenu > ul {
+        float:none;
+        position: relative;
+      }
+
+      #globeTableActionToolsDiv .rightMenu > ul > li > a:hover {
+        background-color: #3498db;
+        color: white;
+      }
+      /*End グローブノードモニター画面-右側のツールバー設定*/
+
+      /*グローブノードモニター画面-グローブノードテーブルデータ表示設定*/
+      #globeNodeList th {
+        text-align: center;
+      }
+      #globeNodeList .table-bordered {
+        border: 1px solid #ddd;
+      }
+      .globeNodesTable {
+        border-color:white;
+      }
+      .globeNodesTable >tr >td{
+        text-align:center;
+      }
+      .globeNodesTable .label{
+        border-radius: 10px;
+        display: inline-block;
+        font-size: 90%;
+      }
+      .globeNodesTable .label:empty{
+        display: inline-block;
+      }
+      .globeNodesTable .nodeStatus .normal{
+        background-color: blue;
+      }
+      .globeNodesTable .nodeStatus .normal:after{
+        content:"正常";
+      }
+      .globeNodesTable .nodeStatus .abnormal{
+        background-color: orange;
+      }
+      .globeNodesTable .nodeStatus .abnormal:after{
+        content:"異常";
+      }
+      .globeNodesTable .nodeStatus .stop{
+        background-color: red;
+      }
+      .globeNodesTable .nodeStatus .stop:after{
+        content:"停止中";
+      }
+      .globeNodesTable .nodeStatus .unmonitored{
+        background-color: lime;
+      }
+      .globeNodesTable .nodeStatus .unmonitored:after{
+        content:"監視対象外";
+      }
+      .globeNodesTable .systemInfoTask a{
+        display: block;
+        padding: 0px;
+      }
+      .globeNodesTable .systemInfoTask span{
+        color: black;
+        display: block;
+      }
+      .globeNodesTable .systemInfoTask .progress{
+        height: 5px;
+        margin-bottom: 0px;
+        box-shadow: none;
+        background-color: red;
+      }
+      .globeNodesTable .systemInfoTask .progress-success{
+        width: 70%;
+        height: 5px;
+        margin-bottom: 0px;
+        background-color:green;
+      }
+      .globeNodesTable .taskStatus{
+        padding-bottom: 0px;
+      }
+      .globeNodesTable .taskStatus a{
+        display: block;
+      }
+      .globeNodesTable .taskStatus span{
+        display: inline;
+      }
+      .globeNodesTable .taskStatus i{
+        display: inline;
+      }
+      .globeNodesTable .taskStatus .success{
+        color: green;
+      }
+      .globeNodesTable .taskStatus .failure{
+        color: red;
+      }
+      .globeNodesTable .taskStatus .stop{
+        color: orange;
+      }
+      .globeNodesTable .taskStatus.processInfo {
+        width: 7%;
+      }
+      /*End グローブノードモニター画面-グローブノードテーブルデータ表示設定*/
+
+      #globeNodeList .dataTables_paginate > span > span {
+        cursor: pointer;
+      }
+      #globeNodeList .dataTables_paginate > span > span:hover {
+        color: red;
+      }
+
+
+      #rightDivDetail form {
+        padding: 0px 10px;
+      }
+      #rightDivDetail form label {
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body class="header-fixed skin-blue">
+    <!-- End グローバルノードモニター用の検索フィルター -->
+    <!-- グローバルノードモニター-右側ツール-テーブル条件検索 -->
+    <div id="globeTableFilterDiv" class="globeTableRightTools">
+      <i class="fa fa-search fa-2x toggle-btn"></i>
+      <div>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+          </div>
+          <div class="form-group">
+          <label for="halt-nodeId" class="col-md-5 control-label">ノードID:</label>
+          <div class="col-md-7">
+            <input type="text" class="form-control" id="halt-nodeId" placeholder="">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="halt-nodeName" class="col-md-5 control-label">ノード名:</label>
+            <div class="col-md-7">
+              <input type="text" class="form-control" id="halt-nodeName" placeholder="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-5 control-label">ノード種別</label>
+            <div class="col-md-7">
+              <p>
+                <select id="globeTblFilter_nodeType_select" class="select2-multiple" style="width:100%;" multiple="multiple">
+                  <option value="all">全て</option>
+                  <option value="agent">エージェント</option>
+                  <option value="sensor">センサー</option>
+                  <option value="second">セカンダリ</option>
+                  <option value="others">その他ノード</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-5 control-label">監視状態</label>
+            <div class="col-md-7">
+              <p>
+                <select id="globeTblFilter_status_select" class="select2-multiple" style="width:100%;" multiple="multiple">
+                  <option value="all">全て</option>
+                  <option value="agent">正常</option>
+                  <option value="sensor">異常</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-5 control-label">ノードグループ</label>
+            <div class="col-md-7">
+              <p>
+                <select id="globeTblFilter_nodegroup_select" class="select2-multiple" style="width:100%;" multiple="multiple">
+                  <option value="all">全て</option>
+                  <option value="nodeGrp1">nodeGrp1</option>
+                  <option value="nodeGrp2">nodeGrp2</option>
+                  <option value="nodeGrp3">nodeGrp3</option>
+                  <option value="nodeGrp4">nodeGrp4</option>
+                  <option value="nodeGrp5">nodeGrp5</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-1 col-md-2">
+              <button type="submit" class="btn btn-default">検索</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End グローバルノードモニター-右側ツール-テーブル条件検索 -->
+    <!-- グローバルノードモニター-右側ツール-テーブルレビュー設定 -->
+    <div id="globeTableSettingDiv" class="globeTableRightTools">
+      <i class="fa fa-cog fa-2x toggle-btn"></i>
+      <div>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-5 control-label">サマリ表示</label>
+            <div class="col-md-7">
+              <input type='checkbox'>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-md-5 control-label">詳細表示</label>
+            <div class="col-md-7">
+              <p>
+                <select id="globeTblShown_col_select" class="select2-multiple" style="width:100%;" multiple="multiple">
+                </select>
+              </p>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-1 col-md-2">
+              <button id="globeRightToolsTblSetting" type="button" class="btn btn-default">レビュー設定</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End グローバルノードモニター-右側ツール-テーブルレビュー設定 -->
+    <!-- グローバルノードモニター-右側ツール-ツール設定 -->
+    <div id="globeTableActionToolsDiv" class="globeTableRightTools">
+      <i class="fa fa-wrench fa-2x toggle-btn"></i>
+      <div class="rightMenu">
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="javascript:void(0);">千手システムプロセス起動</a></li>
+          <li><a href="javascript:void(0);">千手システムプロセス停止</a></li>
+          <li class="divider"></li>
+          <li><a href="javascript:void(0);">特別監視対象外</a></li>
+          <li><a href="javascript:void(0);">特別監視対象外（時刻指定）</a></li>
+          <li class="divider"></li>
+          <li><a href="javascript:void(0);">予約/終了日時延長</a></li>
+          <li><a href="javascript:void(0);">予約解除/特別監視対象外解除</a></li>
+          <li><a href="javascript:void(0);">確認</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End グローバルノードモニター-右側ツール-ツール設定 -->
+    <!-- Header Section -->
+    <header class='clearfix'>
+      <nav class="navbar-main" role="navigation">
+          <!-- Left Button Container -->
+          <ul id="firstNavUl" class="fist-nav button-container clearfix">
+            <div class="bg-logo">
+              <a href="javascript:void(0);" class="logo hidden-xs">
+                <span class="icon">
+                  <i class="fa fa-cube">&nbsp;Senju</i>
+                </span>
+              </a>
+            </div>
+            <li class="item toggle">
+                <a id="sidebarLeftToggle" class="nav-button" data-toggle="collapse" data-target=".sidebarLeft">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span> 
+                </a> 
+            </li>
+            <li class="item icon">
+              <a href="javascript:void(0);" data-toggle="dropdown">
+                <span>bianchi</span>
+              </a>
+              <ul class="dropdown-menu nav-dropdown-list animated fadeInDown">
+                <div class="bottom arrow"></div>
+                <li class="header">
+                    <h4 class="title">ドメイン</h4>
+                </li>
+                <li class="item-list-container">
+                  <ul class="item-list"> 
+                    <li>
+                      <a href="message-item.html"> 
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>ドメイン名:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>マネージャID:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>マネージャ名:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">michigan</h6> 
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info" style="width:50%;">
+                          <h4 class="name"><b>IPアドレス:&nbsp;</b></h4>
+                        </div>
+                        <div class="info">
+                          <h6 class="name">10.10.1.186</h6> 
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="item icon tips">
+              <a href="javascript:void(0);" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="icon-number">99+</span>
+                <div>新メッセージ</div>
+              </a>
+              <ul class="dropdown-menu nav-dropdown-list animated fadeInDown">
+                <div class="bottom arrow"></div>
+                <li class="header">
+                    <h4 class="title">メッセージ</h4>
+                </li>
+                <li class="item-list-container">
+                  <ul class="item-list">
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="message-item.html">
+                        <div class="info">
+                          <h4 class="label label-light-red"><b>E</b></h4>
+                        </div>
+                        <div class="info">
+                          <h4 class="name"><b>!ISM124</b></h4>
+                        </div>
+                        <div class="info">
+                          <span class="date text-muted">15-04-10 16:32:24</span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="footer">
+                    <a href="#" class="btn btn-default" style="border:0px;">全てメッセージ表示</a>
+                </li>
+              </ul>
+            </li>
+            <li class="item user">
+              <a href="javascript:void(0);">
+                <i class="fa fa-sign-out icon">&nbsp;ログアウト</i>
+              </a>
+            </li>
+            <li class="item user">
+              <a href="javascript:void(0);">
+                <i class="fa fa-user icon">&nbsp;senju</i><span>&nbsp;(Operator)</span>
+              </a>
+            </li>
+          </ul>
+          <!-- End Left Button Container -->
+      </nav>
+    <!-- End Header Navigation -->
+    </header>
+
+    <!-- Left Sidebar -->
+    <aside id="leftSideBar" class="sidebar sidebar-left collapse navbar-collapse sidebarLeft">
+      <!-- Sidebar Wrapper -->
+      <div class="sidebar-wrapper">
+      <!-- Sidebar Navigation Wrapper -->
+      <div class="sidebar-nav-wrapper">
+        <!-- Sidebar Navigation -->
+        <ul class="sidebar-nav">
+          <!-- Menu Item -->
+          <li> 
+            <!-- 'data-target' attribute must mactch the id of the submenu dropdown -->
+            <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui-elements-submenu" title="UI Elements">
+                <i class="menu-icon fa fa-lg fa-fw fa-sitemap"></i> <span>ノードグループ</span>
+                <i class="fa fa-caret-right submenu-indicator"></i>
+            </a>
+            <!-- Sub Menu Item -->
+            <ul id="ui-elements-submenu" class="collapse"> 
+              <!-- Menu Item -->
+              <li>
+                  <a href="general.html">General</a>
+              </li>
+              <!-- End Menu Item -->
+              <!-- Menu Item -->
+              <li>
+                  <a href="buttons.html">Buttons</a>
+              </li>
+              <!-- End Menu Item -->
+              <!-- Menu Item -->
+              <li>
+                  <a href="javascript:void(0);" data-toggle="collapse" data-target="#icons-submenu" title="Icons">
+                      <span>Icons</span>
+                      <i class="fa fa-caret-right submenu-indicator"></i>
+                  </a>
+                  <ul id="icons-submenu" class="collapse">  
+                      <!-- Menu Item -->
+                      <li>
+                          <a href="font-awesome.html">Font Awesome</a>
+                      </li> 
+                      <!-- End Menu Item -->
+                      <!-- Menu Item -->
+                      <li>
+                          <a href="ionicons.html">Ionicons</a>
+                      </li> 
+                      <!-- End Menu Item -->
+                  </ul>
+              </li> 
+              <!-- End Menu Item -->
+              <!-- Menu Item -->
+              <li>
+                  <a href="navbar.html">Navbar</a>
+              </li> 
+              <!-- End Menu Item -->
+            </ul>
+          </li>
+          <!-- End Menu Item -->
+
+          <!-- Menu Item -->
+          <li>
+              <a href="javascript:void(0);" title="Charts">
+                  <i class="menu-icon fa fa-lg fa-fw fa-eye"></i> <span class="parent-item">モニタリング</span>
+              </a>
+          </li> 
+
+          <!-- Menu Item -->
+          <li>
+              <a href="javascript:void(0);" title="Charts">
+                  <i class="menu-icon fa fa-lg fa-fw fa-bolt"></i> <span class="parent-item">イベント</span>
+              </a>
+          </li> 
+          <!-- End Menu Item -->
+
+          <!-- Menu Item -->
+          <li class="border-left-blue">
+              <a href="javascript:void(0);" data-toggle="collapse" data-target="#jobSecNav">
+                  <i class="menu-icon fa fa-lg fa-fw fa-inbox"></i> <span class="parent-item">ジョブスケジュール</span>
+                  <i class="fa fa-caret-right submenu-indicator"></i>
+              </a>
+              <ul id="jobSecNav" class="collapse">  
+                  <!-- Menu Item -->
+                  <li>
+                      <a href="font-awesome.html">ジョブ運用</a>
+                  </li> 
+                  <!-- End Menu Item -->
+                  <!-- Menu Item -->
+                  <li>
+                      <a href="ionicons.html">ジョブサービス</a>
+                  </li> 
+                  <!-- End Menu Item -->
+              </ul>
+          </li> 
+          <!-- End Menu Item -->
+
+          <!-- Menu Item -->
+          <li>
+              <a href="javascript:void(0);" title="Calendar">
+                  <i class="menu-icon fa fa-lg fa-fw fa-calendar"></i> <span class="parent-item">稼働統計</span> 
+              </a> 
+          </li>  
+          <!-- End Menu Item -->
+
+          <!-- Menu Item -->
+          <li>
+              <a href="javascript:void(0);" title="Calendar">
+                  <i class="menu-icon fa fa-lg fa-fw fa-filter"></i> <span class="parent-item">履歴検索</span> 
+              </a> 
+          </li>  
+          <!-- End Menu Item -->
+
+          <!-- Menu Item -->
+          <li>
+              <a href="javascript:void(0);" title="Calendar">
+                  <i class="menu-icon fa fa-lg fa-fw fa-cogs"></i> <span class="parent-item">システム設定</span> 
+              </a> 
+          </li>  
+          <!-- End Menu Item -->
+        </ul>
+        <!-- End Sidebar Navigation -->
+      </div>
+      <!-- End Sidebar Navigation Wrapper -->
+
+      </div>
+      <!-- End Sidebar Wrapper -->
+    </aside>
+    <!-- End Left Sidebar -->
+
+    <!-- Page Content Wrapper -->
+    <aside id="middleContent" class="content-wrapper sidebar-left sidebarLeft">
+      <!-- Page Content -->
+      <div class="content sidebarRight animated fadeInUp">
+        <!-- Tabs -->
+        <div class="tab-wrapper clearfix">
+          <!-- Tab Header -->
+          <ul id="contentNavBar" class="nav nav-pills">
+              <li><a href="javascript:void(0);">動作環境</a>
+              </li>
+              <li><a href="javascript:void(0);">稼働日カレンダー</a>
+              </li>
+              <li><a href="javascript:void(0);">トリガ</a>
+              </li>
+              <li><a href="javascript:void(0);">リソース</a>
+              </li>
+              <li class="active"><a id="globeNodesTab" href="#globeNodes" data-toggle="tab">ジョブ</a>
+              </li>
+              <li><a href="javascript:void(0);">ネット</a>
+              </li>
+              <li><a href="javascript:void(0);">システム</a>
+              </li>
+          </ul>
+          <!-- End Tab Header -->
+          <!-- Bootstrap Tabs -->
+          <div class="tab-content" style="border:0px;">
+            <!-- ジョブ運用 Tab -->
+            <div class="tab-pane active clearfix" id="globeNodes">
+              <!-- 稼働中ノード一覧 Panel -->
+              <div class="col-md-7" style="padding:0px;">
+                <div class="panel panel-light-blue">
+                  <div class="panel-heading">
+                    <ol id="naviBar" class="panel-title breadcrumb breadcrumb-customize">
+                        <li><a href="javascript:void(0);">ジョブ運用</a></li>
+                        <li class="active"><a href="javascript:void(0);">ジョブ</a></li>
+                    </ol>
+                    <div class="controls">
+                      <span class="clickable">
+                        <i class="fa fa-plus"></i>
+                        <i class="fa fa-minus"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div id="globeNodeList" class="panel-body">
+                    <table class="table table-striped table-hover" style="width:100%;height:100%;">
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5" style="padding:0px;">
+                <div class="panel panel-light-blue">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">プロパティ</h3>
+                    <div class="controls">
+                      <span class="clickable">
+                        <i class="fa fa-expand"></i>
+                        <i class="fa fa-chevron-down"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div id="rightDivDetail" class="panel-body animated">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End ジョブ運用 Tab -->
+          </div>
+          <!-- End Bootstrap Tabs -->
+        </div>
+      </div>
+    </aside>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jsファイルは依頼関係があるので、jsファイルのロード順番を注意する -->
+    <!-- 画面ロード制御部品のjsロード-->
+    <script src="assets/js/pace/pace.js" data-pace-options='{ "document": false }'></script>
+    <!-- 下記の部品をjqueryに依頼するので、先にjqueryをロードする-->
+    <script src="assets/js/jquery/jquery-1.11.2.js"></script>
+    <!-- bootstrap部品のロード -->
+    <script src="assets/js/bootstrap/js/collapse.js"></script>
+    <script src="assets/js/bootstrap/js/dropdown.js"></script>
+    <script src="assets/js/bootstrap/js/tab.js"></script>
+    <!-- スクロール部品のロード -->
+    <script src="assets/js/slimscroll/jquery.slimscroll.js"></script>
+    <!-- データテーブル部品のロード -->
+    <script src="assets/js/datatables/jquery.dataTables.js"></script>
+    <!-- ダッシュボード部品のロード -->
+    <script src="assets/js/flot/jquery.flot.js"></script> 
+    <script src="assets/js/flot/jquery.flot.pie.js"></script>
+    <!-- マルチ選択入力部品のロード -->
+    <script src="assets/js/select2/select2.full.js"></script>
+    <!-- カレンダー部品のロード -->
+    <script src="assets/js/fullcalendar/moment.js"></script>
+    <script src="assets/js/fullcalendar/fullcalendar.js"></script>
+    <script src="assets/js/fullcalendar/locale/ja.js"></script>
+    <!-- ユーザー作ったjsファイルを最後にロードする -->
+    <!-- Page Script -->
+    <script>
+      //画面onload時の初期化
+      $(document).ready(function() {
+        //画面全般の設定
+        initAll();
+        //画面初期化とresize時のレイアウト
+        initLayout();
+        //画面ヘッダーのメニュー設定
+        initNavMenu();
+        //グローブノードモニタ画面を開く時の初期化
+        initGlobeNodesTab();
+      });
+
+      //画面全般の設定
+      function initAll() {
+        //全てのパネルの右側のクリックボタン設定
+        $(document).on('click', '.panel-heading .clickable', function (e) {
+            "use strict";
+            var $this = $(this);
+            
+            var $target = $(e.target);
+            var $span = $target.closest('span');
+
+            //詳細情報Panel画面の「折り畳む/展開」ボタンの動作
+            if ($target.hasClass('fa-chevron-down') || $target.hasClass('fa-chevron-up')) {
+              if (!$span.hasClass('panel-collapsed')) {
+                $span.closest('.panel').find('.panel-body').slideUp();
+                $span.addClass('panel-collapsed');
+                $target.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+              } else {
+                $span.closest('.panel').find('.panel-body').slideDown();
+                $span.removeClass('panel-collapsed');
+                $target.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+              }
+
+            //詳細情報Panel画面の「拡張/縮める」ボタンの動作
+            } else if ($target.hasClass('fa-expand') || $target.hasClass('fa-compress')) {
+              $span.closest('.panel').toggleClass('widget-fullscreen');
+              $target.toggleClass('fa-expand fa-compress');
+              $('body').toggleClass('fullscreen-widget-active');
+            }
+        });
+      }
+
+      //画面のレイアウトの調整
+      function initLayout() {
+        //メニューなどのスクロールバー調整
+        //画面が狭い時左側のメニューを隠す
+        if ($(window).width() < 991 && !$('.sidebarLeft').hasClass('in')) {
+          $('#sidebarLeftToggle').trigger('click');
+        }
+        //ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
+        adjustMenuContentTop();
+        //画面のサイズを調整する時、ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
+        $(window).resize(function() {
+          adjustMenuContentTop();
+        });
+      }
+
+      //ヘッダーの高度に応じて、右側メニュー、中間内容を下へ移す(top、margin-top調整)
+      function adjustMenuContentTop() {
+          //ヘッダーの高度を取得
+          var headerHeight = 0;
+          if ($('header').length) {
+            headerHeight = $('header')[0].offsetHeight;
+          }
+          //右側メニュー、中間内容のtop、margin-top調整
+          if (headerHeight) {
+            $('#leftSideBar').css('top', headerHeight);
+            $('#middleContent').css('margin-top', headerHeight);
+          }
+      }
+
+      //画面ヘッダーのメニュー設定
+      function initNavMenu() {
+        var leftVal;
+        var $alink;
+        var $divObj;
+        //メニューアイコンのtip表示設定
+        $("#firstNavUl li.item.tips >a").each(function() {
+          $alink = $(this);
+          $divObj = $alink.children('div');
+          leftVal = $divObj.css('left');
+          leftVal = leftVal.replace("px","");
+          leftVal = leftVal - ($divObj[0].offsetWidth - this.offsetWidth)/2;
+          leftVal = leftVal + "px";
+          $divObj.css('left', leftVal);
+        });
+      }
+
+
+      //////////////////////Start グローブノードモニター/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //グローブノードモニター-グローブノードテーブル-ヘッダー初期化
+      function initGlobeNodesTable(headers, datas) {
+        //headersからテーブルのヘッダーを取得
+        var headerDatas = {
+          "headers":[
+            {"catlog1": "<input type='checkbox' name='selectedNodes' onclick='javascript:onItemSelectedAll(event);'/>"},
+            {"catlog1": "名称"},
+            {"catlog1": "動作環境"},
+            {"catlog1": "終了しきい値"},
+            {"catlog1": "コマンド"},
+            {"catlog1": "変更予約"}
+          ]
+        };
+        var $dataTables = $('#globeNodeList > table');
+
+        //ヘッダー作成
+        $dataTables.append("<thead><tr></tr></thead>");
+        var $tblHeader = $('#globeNodeList > table > thead');
+        //第一層ヘッダー（catlog1）
+        var $headerTr1 = $($tblHeader.children('tr')[0]);
+        //ヘッダーデータ
+        var headerArr = headerDatas.headers;
+        //テーブルのヘッダーを作成
+        for(var i=0; i<headerArr.length; i++) {
+          $headerTr1.append('<th>' + headerArr[i].catlog1 +'</th>');
+        }
+
+        //テーブルのデータの作成
+        $dataTables.append("<tbody class='globeNodesTable'></tbody>");
+        var $tblBody = $('#globeNodeList > table > tbody');
+        //グローブノードモニター-グローブノードテーブル-テーブルの行の作成
+        createGlobeNodeTableTr($tblBody);
+
+        //テーブルボディの高さを計算する
+        var tblHeight = calculateTableBodyHeight();
+        tblHeight += "px";
+
+        //ページ表示の個数設定(頁数/...を含む)
+        var pageNumberLength = 9;
+        $.fn.DataTable.ext.pager.numbers_length = pageNumberLength;
+
+        var globeNodesTable = $('#globeNodeList > table').DataTable(
+        {
+            //日本語対応
+            "language": {
+              "info": "現在表示_START_～_END_件／計_TOTAL_件",
+              "processing": "処理中...",
+              "lengthMenu":   "_MENU_件/ページ",
+              "zeroRecords": "データはありません。",
+              "infoEmpty":    "現在表示0～0件／計0件",
+              "infoFiltered": "（全 _MAX_ 件より抽出）",
+              "infoPostFix":  "",
+              "search": "検索：",
+              "emptyTable": "",
+              "sLoadingRecords": "ローディング...",
+              "sInfoThousands":  ",",
+              "oPaginate": {
+                  "sFirst":    "|<",
+                  "sPrevious": "<",
+                  "sNext":     ">",
+                  "sLast":     ">|"
+              },
+              "aria": {
+                  "sortAscending":": asc",
+                  "sortDescending":": desc"
+              }
+            },
+            "pagingType": "full_numbers",
+            "scrollCollapse": true,
+            "pageLength": 10,
+            "scrollY": tblHeight,
+            //画面各モジュール位置設定　l:件数/頁　p：頁数表示　i：件数範囲表示　r：状態　t：データテーブル
+            "dom": "tpi",
+            //初期化時の各列の順番表示設定
+            "order": [],
+            //初期化時の各列の順番表示設定
+            "columnDefs": [
+              {
+                //列属性-順番表示しない
+                "orderable": false,
+                //適用列番号
+                "targets": [0,2,3,4,5]
+              },
+              {
+                //列属性-表示しない
+                "visible": false,
+                //適用列番号
+                "targets": []
+              }
+            ],
+            //件数範囲表示出力フォーマット
+            "infoCallback": function(settings, start, end, max, total, out) {
+              return "<span>" + out + "</span>";
+            },
+            //グローブノードテーブル初期化完成イベント
+            "initComplete": function(settings, json) {
+              globeNodesTblAddPageTo();
+            }
+          }
+        );
+        //初期化したデータテーブルの対象を保存する
+        $('#globeNodeList').data('globeNodesTbl',globeNodesTable);
+        PageJumpInit(pageNumberLength);
+
+        //データテーブル初期化成功イベント
+        $('#globeNodeList > table').on('init.dt', function () {
+          alert("init complete");
+        });
+
+        //画面を描く完了イベント
+        $('#globeNodeList > table').on('draw.dt', function (e, settings) {
+          // alert("draw complete");
+          $('#globeNodeList .globeNodesTable>tr').each(function(){
+            var checkBox = $($(this).children('td')[0]).children('input')[0];
+            selectedOrNot(false, checkBox);
+          });
+          //ページジャンプ
+          PageJumpInit(pageNumberLength);
+        });
+        
+        //ページングチェンジイベント
+        $('#globeNodeList > table').on('page.dt', function (e, settings) {
+          //alert("page changed");
+          // globeNodesTblSetPageTo();
+        });
+
+        //グローバルノードモニター-右側ツール-テーブルレビュー
+        $('#globeRightToolsTblSetting').on('click', function (e) {
+          e.preventDefault();
+          globeNodesTblSetting();
+        } );
+      }
+
+      //データテーブル
+      function calculateTableBodyHeight() {
+        //ウインドウの高さ-(ヘッダの高さ + メニューの高さ + パネルの高さ + テーブルヘッダの高さ + 頁の高さ
+        var height = $('html').outerHeight(true);
+        height = height - ($('header').outerHeight(true) + $('#contentNavBar').outerHeight(true) + $('#globeNodeList').prev().outerHeight(true) + $('#globeNodeList > table > thead').outerHeight(true) + 40);
+        return height;
+      }
+
+      //頁数は5以上の場合、5頁ごとにジャンプする機能
+      function PageJumpInit(pageNumberLength) {
+        //頁のinfo
+        var pageInfo = $('#globeNodeList').data('globeNodesTbl').page.info();
+        //表示した頁のstart
+        // alert("start: " + pageInfo.start + " end: " + pageInfo.end + " currnetPage: " + pageInfo.page + " totalPage: " + pageInfo.pages);
+        //表示した頁のEnd
+        var totalPage = pageInfo.pages;
+        var currentPage = pageInfo.page;
+        //pageNumberLength 画面最大表示できるページ数の個数9（'...'含む）
+        if (totalPage > pageNumberLength) {
+          var half = pageNumberLength/2;
+          var spans = $('#globeNodeList .dataTables_paginate > span > span');
+          if (currentPage > half) {
+            $(spans[0]).on('click', function(event){
+              // alert("pre page jump");
+              PageJump("pre");
+            });
+          }
+          if (currentPage < totalPage-half-1) {
+            $(spans[spans.length - 1]).on('click', function(event){
+              // alert("after page jump");
+              PageJump("after");
+            });
+          }
+        }
+      }
+
+      function PageJump(flag) {
+        var pageInfo = $('#globeNodeList').data('globeNodesTbl').page.info();
+        var currentPage = pageInfo.page;
+        var totalPage = pageInfo.pages;
+        var toPage;
+        if (flag == "pre") {
+          toPage = currentPage - 5;
+        } else if (flag == "after") {
+          toPage = currentPage + 5;
+        }
+        if (toPage < 0) {
+          toPage = 0;
+        } else if (toPage > totalPage-1) {
+          toPage = totalPage-1;
+        }
+        $('#globeNodeList').data('globeNodesTbl').page(toPage).draw(false);
+      }
+
+      //選択した頁数をジャンプ入力に設定
+      function globeNodesTblSetPageTo() {
+        var pageObj = $('#globeNodeList').data('globeNodesTbl').page.info();
+        var totalPage = pageObj.pages;
+        var currentPage = pageObj.page + 1;
+        currentPage += "";
+        $("#globeNodeList .dataTables_page_jump > span > input[type='text']").val(currentPage);
+      }
+
+      //頁ジャンプの画面表示を追加
+      function globeNodesTblAddPageTo() {
+        var pageToDivHtml;
+        pageToDivHtml = "";
+        pageToDivHtml += "<div class='dataTables_page_jump'><span>頁： <input type='text' size='5' value='1'/><input type='button' value='Go' onclick='javascript:jumpToPage(event);'/></span></div>";
+        //p：頁数表示前に挿入
+        $('#globeNodeList .dataTables_paginate').before(pageToDivHtml);
+      }
+
+      //頁ジャンプ
+      function jumpToPage(e) {
+        var $target = $(e.target);
+        var toPage = $target.prev().val()-1 ;
+
+        $('#globeNodeList').data('globeNodesTbl').page(toPage).draw(false);
+
+      }
+
+      //グローブノードモニター-右側ツール-テーブル表示カテゴリ設定
+      function globeNodesTblSetting() {
+        //表示した列を取得する
+        var selectedCols = $('#globeTblShown_col_select').val();
+        if (selectedCols != null) {
+          selectedCols = "," + selectedCols + ",";
+        }
+        //グローブノードテーブル取得
+        var globeNodesTbl = $('#globeNodeList').data('globeNodesTbl');
+
+        //8~12列チェック
+        var column;
+        var indexStr;
+        if (selectedCols == null) {
+          for(var i=8; i<13; i++) {
+            column = globeNodesTbl.column(i);
+            if (column.visible()) {
+              column.visible(false);
+            }
+          }
+        } else {
+          for(var i=8; i<13; i++) {
+            indexStr = "," + i + ",";
+            column = globeNodesTbl.column(i);
+            //表示するべき 且つ 画面で表示しない
+            if (selectedCols.indexOf(indexStr) != -1 && !column.visible()) {
+              column.visible(true);
+            //表示しないべき 且つ 画面で表示する
+            } else if(selectedCols.indexOf(indexStr) == -1 && column.visible()){
+              column.visible(false);
+            }
+          }
+        }
+      }
+
+      //グローブノードモニター-グローブノードテーブル-テーブルの行の作成
+      function createGlobeNodeTableTr(tblBody) {
+        var nodeObj;
+        var dataListTrHtml;
+        for (var i=1; i<=122; i++) {
+          //36コラム
+          dataListTrHtml = "";
+          dataListTrHtml += "<tr onclick='javascript:onItemTrClick(event, this);'>";
+          dataListTrHtml += " <td><input type='checkbox'></td>";
+          dataListTrHtml += " <td><a href='javascript:requestJobDetail(" + i + ");' style='color:green;'>Job" + i + "</a></td>";
+          dataListTrHtml += " <td>Env" + i + "</td>";
+          dataListTrHtml += " <td class='taskStatus'>";
+          dataListTrHtml += "   <span>" + i + "</span>";
+          dataListTrHtml += " </td>";
+          dataListTrHtml += " <td class='taskStatus'>";
+          dataListTrHtml += "   <span>csh -c TEST_BATCH.csh</span>";
+          dataListTrHtml += " </td>";
+          dataListTrHtml += " <td class='taskStatus'>";
+          dataListTrHtml += "   <span>あり</span>";
+          dataListTrHtml += " </td>";
+          dataListTrHtml += "</tr>";
+
+          tblBody.append(dataListTrHtml);
+        }
+      }
+
+      //グローブノードモニター-グローブノードテーブル-行のチェックボックス選択
+      function onItemSelected(checkBox) {
+        var $currentTr = $(checkBox).closest('tr');
+        //選択した場合
+        if (checkBox.checked) {
+          $currentTr.addClass("selected");
+        //選択しない場合
+        } else {
+          $currentTr.removeClass("selected");
+        }
+      }
+
+      //グローブノードモニター-グローブノードテーブル-ヘッダーのチェックボックスの動作
+      function onItemSelectedAll(e) {
+        var $target = $(e.target);
+        var selectedFlag = e.target.checked;
+
+        $('#globeNodeList .globeNodesTable>tr').each(function(){
+          var checkBox = $($(this).children('td')[0]).children('input')[0];
+          selectedOrNot(selectedFlag, checkBox);
+        });
+      }
+
+      //グローブノードモニター-グローブノードテーブル-行のチェックボックスの動作
+      function selectedOrNot(selectedFlag,checkBox) {
+        var itemChecked = checkBox.checked;
+        var $currentTr = $(checkBox).closest('tr');
+        //チェックボックス以外の場合
+        if (itemChecked == null) {
+          return false;
+        }
+        //選択べき且つ選択しない場合
+        if (selectedFlag && !itemChecked) {
+          checkBox.checked = true;
+          $currentTr.addClass("selected");
+        //選択しないべき且つ選択する場合
+        } else if (!selectedFlag && itemChecked) {
+          checkBox.checked = false;
+          $currentTr.removeClass("selected");
+        }
+      }
+
+      //グローブノードモニター-グローブノードテーブル-行をクリックするの選択動作
+      function onItemTrClick(e, trObj) {
+        //クリックイベント発生した対象 
+        //イベントbubblingの原因で、リンク/チェックボックスなどをクリックする可能
+        var target = e.target;
+        while (target != trObj) {
+          $target = $(target);
+          //リンクをクリックする場合、なにもしない
+          if ($target.is('a')) {
+            return;
+          //チェックボックスなどをクリックする場合、行を選択する
+          } if ($target.is("input[type='checkbox']")) {
+            onItemSelected(target);
+            $('#globeNodeList').data('lastSelectedTr',trObj);
+            return;
+          }　else {
+            target = $target.parent()[0]
+          }
+        }
+        //リンク/チェックボックス以外の場合、この行を選択/選択しない
+        if (target == trObj) {
+          //該当のチェックボックス
+          var checkBox = $(trObj).find("td>input[type='checkbox']")[0];
+          //ctrlで選択
+          if(e.ctrlKey) {
+            var selectedFlag = checkBox.checked;
+            selectedOrNot(!selectedFlag, checkBox);
+            //最後選択した行とする（ctrlで選択/直接選択だけ）
+            $('#globeNodeList').data('lastSelectedTr',trObj);
+          //altで選択
+          } else if (e.altKey) {
+            initAllCheckBox();
+            //最後選択した行（ctrl+選択/単に選択だけ）取得
+            var lastSelectedTr = $('#globeNodeList').data('lastSelectedTr');
+            if (lastSelectedTr == null) {
+              //最後選択した行とする（ctrlで選択/直接選択だけ）
+              $('#globeNodeList').data('lastSelectedTr',trObj);
+              selectedOrNot(true, checkBox);
+            } else {
+              //最後選択した行からaltで選択した行までの行を選択する
+              var runFlg = false;
+              var chkBoxForeach;
+              $('#globeNodeList .globeNodesTable>tr').each(function(){
+                chkBoxForeach = $($(this).children('td')[0]).children('input')[0];
+                if (this == lastSelectedTr || this == trObj) {
+                  selectedOrNot(true, chkBoxForeach);
+                  if (!runFlg) {
+                    runFlg = true;
+                  } else {
+                    return false;
+                  }
+                } else if (runFlg) {
+                  selectedOrNot(true, chkBoxForeach);
+                }
+              });
+            }
+          //直接選択
+          } else {
+            if (e.button == 2) {
+              //mouseevent.clientX
+              alert("right button");
+            }
+            initAllCheckBox();
+            selectedOrNot(true, checkBox);
+            //最後選択した行（ctrlで選択/直接選択だけ）
+            $('#globeNodeList').data('lastSelectedTr',trObj);
+          }
+        }
+      }
+
+      //グローブノードモニター-グローブノードテーブル-全ての選択項目初期化
+      function initAllCheckBox() {
+        $('#globeNodeList .globeNodesTable>tr').each(function(){
+          var checkBox = $($(this).children('td')[0]).children('input')[0];
+          selectedOrNot(false, checkBox);
+        });
+      }
+
+      //グローブノードモニタ-画面を開く時の初期化
+      function initGlobeNodesTab() {
+        //グローバルノードモニタータブ開く時初期化
+        $('#globeNodesTab').on('shown.bs.tab', function(e) {
+          //グローブノードモニター-右側ツールの初期化
+          globeNodesRightToolsInit();
+        });
+        //初期表示
+        $('#globeNodesTab').trigger({
+          type: 'shown.bs.tab',
+          relatedTarget: this
+        });
+        //グローブノードモニター-グローブノードテーブル
+        initGlobeNodesTable();
+      }
+
+      //グローブノードモニター-右側ツールの初期化
+      function globeNodesRightToolsInit() {
+        //グローブノードモニター-右側ツール-検索条件初期化
+        globeNodesRightToolsFilterInit();
+        //グローブノードモニター-右側ツール-テーブル表示設定初期化
+        globeNodesRightToolsViewSettingInit();
+        //グローブノードモニター-右側ツール-テーブルツール初期化
+        globeNodesRightToolsActionToolsInit();
+      }
+
+      //グローブノードモニター-右側ツール-検索条件初期化
+      function globeNodesRightToolsFilterInit() {
+        //画面表示/隠す
+        $('#globeTableFilterDiv .toggle-btn').on('click', function (evt) {
+          globeNodeRightToolsToggle(evt);
+        });
+        //各項目初期化
+        //ノード種別
+        //監視状態
+        //ノードグループ
+      }
+
+      //グローブノードモニター-右側ツール-テーブル設定初期化
+      function globeNodesRightToolsViewSettingInit() {
+        var data = [
+          { id: 8, text: 'WEBサーバ' },
+          { id: 9, text: 'DBサーバ' },
+          { id: 10, text: 'MAILサーバ' },
+          { id: 11, text: 'APサーバ' },
+          { id: 12, text: 'ERPサーバ' }
+        ];
+        //画面表示/隠す
+        $('#globeTableSettingDiv .toggle-btn').on('click', function (evt) {
+          globeNodeRightToolsToggle(evt);
+        });
+        //各項目初期化
+        //表示カテゴリ
+        $('#globeTblShown_col_select').select2({
+          data:data
+        });
+      }
+
+      //グローブノードモニター-右側ツール-テーブルツール初期化
+      function globeNodesRightToolsActionToolsInit() {
+        //画面表示/隠す
+        $('#globeTableActionToolsDiv .toggle-btn').on('click', function (evt) {
+          globeNodeRightToolsToggle(evt);
+        });
+      }
+
+      //グローブノードモニター-右側ツール-表示/隠す設定
+      function globeNodeRightToolsToggle(e) {
+        //<i>タグ取得
+        var $target = $(e.target);
+        $target.siblings('div').toggleClass('open animated fadeInRight');
+        //<div>タグ取得
+        $target.closest('div').siblings('.globeTableRightTools').children('div').removeClass('open animated fadeInRight');
+      }
+
+
+
+
+
+
+      //Ajaxリクエスト
+      function ajaxRequest(params) {
+        //Progress Barを除く
+        Pace.restart();
+        // 誤操作を防ぐため、陰は画面を覆う
+        var shadowDivHtml = "<div class='div-shadow-ajax'></div>";
+        $('body').append(shadowDivHtml);
+
+        $.ajax({
+          xhr: function(){
+            var xhr = new XMLHttpRequest();
+            //Upload progress
+            // xhr.upload.addEventListener("progress", function(evt){
+            //   if (evt.lengthComputable) {
+            //     var percentComplete = evt.loaded / evt.total;
+            //     //Do something with upload progress
+            //     console.log(percentComplete);
+            //   }
+            // }, false);
+            // //Download progress
+            // xhr.addEventListener("progress", function(evt){
+            //   if (evt.lengthComputable) {
+            //     var percentComplete = evt.loaded / evt.total;
+            //     //Do something with download progress
+            //     console.log(percentComplete);
+            //   }
+            // }, false);
+            return xhr;
+          },
+          type: 'GET',
+          url: "http://localhost:5646/cty/",
+          username: params
+        }).always(function(){
+          //詳細画面表示
+          viewJobDetail(this.username);
+          //Progress Barを除く
+          Pace.stop();
+          //画面の影を除く
+          $('.div-shadow-ajax').remove();
+        });
+      }
+
+      //ジョブ詳細をリクエスト
+      function requestJobDetail(params) {
+        ajaxRequest(params);
+      }
+
+      //ジョブ詳細画面を表示
+      function viewJobDetail(params) {
+        //ジョブオブジェクト取得（仮）
+        var jobObj = new JobObject(params);
+
+        $('#rightDivDetail').children('form').remove();
+        createJobDetailForm(jobObj);
+        //高さ設定
+        $('#rightDivDetail').height(calculateDetailHeight());
+
+        //naviBarを上る
+        upNaviBar();
+        //naviBarを下る
+        downNaviBar(jobObj.jobName);
+
+        //詳細情報を表示するたびにDIVの動き効果
+        $('#rightDivDetail').addClass('fadeInRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+          $('#rightDivDetail').removeClass('fadeInRight');
+        });
+      }
+
+      //プロパティの高さ計算
+      function calculateDetailHeight() {
+        //ウインドウの高さ-(ヘッダの高さ + メニューの高さ + パネルの高さ
+        var height = $('html').outerHeight(true);
+        height = height - ($('header').outerHeight(true) + $('#contentNavBar').outerHeight(true) + $('#rightDivDetail').prev().outerHeight(true));
+        return height;
+      }
+
+      function JobObject(num) {
+        this.jobName = "Job" + num;
+        this.jobTemplateId = "JobTemplate" + num;
+        this.jobCmd = "csh -c TEST_BATCH.csh";
+        this.jobChangeFlg = "なし";
+        this.jobChangeDate = "2015/03/12";
+        this.jobChangeCmd = "csh -c TEST_BATCH_002.csh -asenju -psenju01 -cls";
+        this.jobEndVal = "" + num;
+        this.jobEnvName = "bianchi";
+        this.jobEnvDesc = "テストパッチ" + num;
+      }
+
+      function createJobDetailForm(jobObj) {
+        var formHtml = "";
+        formHtml += "<form class=\"form-horizontal\" role=\"form\">";
+        formHtml += "  <div class=\"form-group\">";
+        formHtml += "    <label class=\"col-sm-12 control-label\" style='margin:7px 15px 0px 15px;padding:0px;font-size:14px;border-bottom:1px solid #454545;'>全般</label>";
+        formHtml += "  </div>";
+        formHtml += "</form>";
+
+        $('#rightDivDetail').append(formHtml);
+
+        $('#rightDivDetail').children('form').append(createFormItem("ジョブ名", jobObj.jobName));
+        $('#rightDivDetail').children('form').append(createFormItem("ジョブテンプレートID", jobObj.jobTemplateId));
+        $('#rightDivDetail').children('form').append(createFormItem("起動コマンド", jobObj.jobCmd));
+        $('#rightDivDetail').children('form').append(createFormItem("変更予約", jobObj.jobChangeFlg));
+        $('#rightDivDetail').children('form').append(createFormItem("変更予約有効日", jobObj.jobChangeDate));
+        $('#rightDivDetail').children('form').append(createFormItem("変更予約コマンド", jobObj.jobChangeCmd));
+        $('#rightDivDetail').children('form').append(createFormItem("終了しきい値", jobObj.jobEndVal));
+        $('#rightDivDetail').children('form').append(createFormItem("動作環境名", jobObj.jobEnvName));
+        $('#rightDivDetail').children('form').append(createFormItem("説明", jobObj.jobEnvDesc));
+      }
+
+      function createFormItem(itemName, itemVal) {
+        var formItem = "";
+        formItem += "<div class=\"form-group\">";
+        formItem += "  <label class=\"col-sm-3 control-label\">" + itemName +"：</label>";
+        formItem += "  <div class=\"col-sm-9\">";
+        formItem += "    <span class=\"form-label-text\">" + itemVal +"</span>";
+        formItem += "  </div>";
+        formItem += "</div>";
+
+        return formItem;
+      }
+
+      //Navi barの更新
+      function upNaviBar() {
+        $('#naviBar>li').last().remove();
+        refreshNaviBar();
+      }
+
+      function downNaviBar(naviName) {
+        var liHtmlStr = "<li><a href=\"javascript:void(0);\">" + naviName + "</a></li>";
+        $('#naviBar').append(liHtmlStr);
+        refreshNaviBar();
+      }
+
+      function refreshNaviBar() {
+        $('#naviBar > li').removeClass('active');
+        $('#naviBar > li').last().addClass('active');
+      }
+      //End Navi barの更新
+      //////////////////////End グローブノードモニター/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    </script>
+  </body>
+</html>
